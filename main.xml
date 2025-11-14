@@ -1,0 +1,38 @@
+<ui>
+    <statusbar />
+    <linear w="max" h="max" dir="v" padding="20">
+        <linear w="max" weight="1" dir="v">
+            <text size="18" text="请先授权(部分手机授权后需重启APP)" />
+            <card w="max" margin="0,20,0,0">
+                <linear w="max" dir="h" gravity="center|left" padding="5">
+                    <text text="无障碍" size="15" padding="10,0,0,0" />
+                    <linear w="max" gravity="center|end" weight="1">
+                        <button id="perm_it" style="text" text="授权" textColor="red" />
+                    </linear>
+                </linear>
+            </card>
+            <card w="max" margin="0,10,0,10">
+                <linear w="max" dir="h" gravity="center|left" padding="5">
+                    <text text="悬浮窗" size="15" padding="10,0,0,0" />
+                    <linear w="max" gravity="center|end" weight="1">
+                        <button id="perm_float" style="text" text="授权" textColor="red" />
+                    </linear>
+                </linear>
+            </card>
+            <card w="max" margin="0,10,0,10">
+                <linear w="max" dir="h" gravity="center|left" padding="5">
+                    <text text="通知" size="15" padding="10,0,0,0" />
+                    <linear w="max" gravity="center|end" weight="1">
+                        <button id="perm_notice" style="text" text="授权" textColor="red" />
+                    </linear>
+                </linear>
+            </card>
+            <text size="14" text="注意：" color="#FF5500" />
+            <text size="14" text="1. 微信最新版本8.0.64已测试通过，其它版本未知" color="#FF5500" />
+            <text size="14" text="2. 使用前设置：置顶群聊 + 永不息屏" color="#FF5500" />
+            <text size="14" text="3. 抢红包期间需要一直停留在群聊聊天页面" color="#FF5500" />
+            <text size="14" text="4. 使用日志悬浮窗时，请调整大小并拖动到右上角，不要遮挡点击操作" color="#FF5500" />
+        </linear>
+        <text size="16" text="V1.0.0 · Power By Liang2uv" h="auto" w="max" gravity="center" />
+    </linear>
+</ui>

@@ -1,0 +1,19 @@
+{
+  "main": "/sdcard/Pictures/Liang2uv@qianghongbao/main.js",
+  "path": "/sdcard/Pictures/Liang2uv@qianghongbao",
+  "screen": {
+    "cutBottom": 0.0,
+    "cutTop": 0.0,
+    "density": 3.0,
+    "dpi": 480.0,
+    "height": 2400.0,
+    "width": 1080.0
+  },
+  "app": {
+    "appDesc": "AIGame 自动化小程序",
+    "appIcon": "/sdcard/Pictures/Liang2uv@qianghongbao/res/icon.png",
+    "appName": "Liang2uv@qianghongbao",
+    "appNotice": "我的第一个AIGame项目",
+    "appVersion": "v1.0.0"
+  }
+}

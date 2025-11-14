@@ -1,0 +1,35 @@
+<ui>
+    <linear w="max" h="max" dir="v" padding="0" bg="#FFFFFF" gravity="top|left">
+        <scroll w="max" weight="1" dir="v">
+            <linear w="max" dir="v" h="auto" padding="20">
+                <input id="input_luckyDur" hint="luckyDur" w="max" type="number" help="检测红包间隔时间(单位:毫秒)" margin_bottom="15" />
+                <input id="input_luckyTime" hint="luckyTime" w="max" type="number" help="检测红包次数(单位:次/循环)" margin_bottom="15" />
+                <input id="input_luckySleep" hint="luckySleep" w="max" type="number" help="点击红包后暂停时间(单位:毫秒)" margin_bottom="15"  />
+                <input id="input_kaiDur" hint="kaiDur" w="max" type="number" help="检测“開”字间隔时间(单位:毫秒)" margin_bottom="15"/>
+                <input id="input_kaiTime" hint="kaiTime" w="max" type="number" help="检测“開”字次数(单位:次)" margin_bottom="15"/>
+                <input id="input_kaiSleep" hint="kaiSleep" w="max" type="number" help="点击“開”字后暂停时间(单位:毫秒)" margin_bottom="15"/>
+                <input id="input_kaiBackDur" hint="kaiBackDur" w="max" type="number" help="检测“红包详情页返回按钮”间隔时间(单位:毫秒)" margin_bottom="15"/>
+                <input id="input_kaiBackTime" hint="kaiBackTime" w="max" type="number" help="检测“红包详情页返回按钮”次数(单位:次)" margin_bottom="15" />
+                <input id="input_kaiBackSleep" hint="kaiBackSleep" w="max" type="number" help="点击“红包详情页返回按钮”后暂停时间(单位:毫秒)" margin_bottom="15" />
+                <input id="input_closeDur" hint="closeDur" w="max" type="number" help="检测“过期红包关闭按钮”间隔时间(单位:毫秒)" margin_bottom="15" />
+                <input id="input_closeTime" hint="closeTime" w="max" type="number" help="检测“过期红包关闭按钮”次数(单位:次)" margin_bottom="15" />
+                <input id="input_closeSleep" hint="closeSleep" w="max" type="number" help="点击“过期红包关闭按钮”后暂停时间(单位:毫秒)" margin_bottom="15"  />
+                <input id="input_delPressDur" hint="delPressDur" w="max" type="number" help="检测“已打开的红包”间隔时间(单位:毫秒)" margin_bottom="15"  />
+                <input id="input_delPressTime" hint="delPressTime" w="max" type="number" help="检测“已打开的红包”次数(单位:次)" margin_bottom="15"  />
+                <input id="input_delPressSleep" hint="delPressSleep" w="max" type="number" help="长按“已打开的红包”后暂停时间(单位:毫秒)" margin_bottom="15" />
+                <input id="input_delDur" hint="delDur" w="max" type="number" help="检测“已打开红包的删除按钮”间隔时间(单位:毫秒)" margin_bottom="15"  />
+                <input id="input_delTime" hint="delTime" w="max" type="number" help="检测“已打开红包的删除按钮”次数(单位:次)" margin_bottom="15"  />
+                <input id="input_delSleep" hint="delSleep" w="max" type="number" help="点击“已打开红包的删除按钮”后暂停时间(单位:毫秒)" margin_bottom="15"/>
+                <input id="input_delSureDur" hint="delSureDur" w="max" type="number" help="检测“确定删除按钮”间隔时间(单位:毫秒)" margin_bottom="15"   />
+                <input id="input_delSureTime" hint="delSureTime" w="max" type="number" help="检测“确定删除按钮”次数(单位:次)" margin_bottom="15"  />
+                <input id="input_delSureSleep" hint="delSureSleep" w="max" type="number" help="点击“确定删除按钮”后暂停时间(单位:毫秒)" margin_bottom="15" />
+                <input id="input_backDur" hint="backDur" w="max" type="number" help="检测“群聊页返回按钮”间隔时间(单位:毫秒)" margin_bottom="15" />
+                <input id="input_backTime" hint="backTime" w="max" type="number"  help="检测“群聊页返回按钮”次数(单位:次)" margin_bottom="15"  />
+                <input id="input_backSleep" hint="backSleep" w="max" type="number" help="点击“群聊页返回按钮”后暂停时间(单位:毫秒)" margin_bottom="15" />
+                <input id="input_topDur" hint="topDur" w="max" type="number" help="检测“置顶群聊”间隔时间(单位:毫秒)" margin_bottom="15"  />
+                <input id="input_topTime" hint="topTime" w="max" type="number" help="检测“置顶群聊”次数(单位:次)"  margin_bottom="15"  />
+                <input id="input_topSleep" hint="topSleep" w="max" type="number"  help="点击“置顶群聊”后暂停时间(单位:毫秒)" margin_bottom="15"  />
+            </linear>
+        </scroll>
+    </linear>
+</ui>
