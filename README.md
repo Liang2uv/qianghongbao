@@ -5,10 +5,12 @@
 
 ## 使用方法
 
-1. 下载`AIGAME.app`，AIGAME官网链接：[http://ermxx.com/api/act.html](http://ermxx.com/api/act.html)
+1. 下载安装`AIGAME.apk`，AIGAME官网链接：[http://ermxx.com/api/act.html](http://ermxx.com/api/act.html)
 
-2. 导入本项目
+2. 打开 `AIGAME App`，新建项目
 
-3. 运行`main.js`文件即可
+3. 将本项目的`icon.png`, `main.js`, `main.xml`, `setting.xml`替换掉你新建项目的文件即可
+
+4. 运行`main.js`文件
 
 ## 如有疑问请联系作者微信：Liang2uv
