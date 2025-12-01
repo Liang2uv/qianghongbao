@@ -28,10 +28,11 @@
                 </linear>
             </card>
             <text size="14" text="注意：" color="#FF5500" />
-            <text size="14" text="1. 微信最新版本8.0.64已测试通过，其它版本未知" color="#FF5500" />
-            <text size="14" text="2. 使用前设置：置顶群聊 + 永不息屏" color="#FF5500" />
-            <text size="14" text="3. 抢红包期间需要一直停留在群聊聊天页面" color="#FF5500" />
-            <text size="14" text="4. 使用日志悬浮窗时，请调整大小并拖动到右上角，不要遮挡点击操作" color="#FF5500" />
+            <text size="14" text="1. 悬浮按钮组从上到下依次是：[跳转微信]、[设置]、[查看日志]、[运行/暂停]、[关闭应用]" color="#FF5500" />
+            <text size="14" text="2. 微信最新版本8.0.65已测试通过，其它版本未知" color="#FF5500" />
+            <text size="14" text="3. 使用前设置：置顶群聊 + 永不息屏" color="#FF5500" />
+            <text size="14" text="4. 抢红包期间需要一直停留在群聊聊天页面，期间不要动屏幕，如果要动屏幕请先点暂停" color="#FF5500" />
+            <text size="14" text="5. 使用日志悬浮窗时，请缩小窗口并拖动到右上角，不要遮挡点击操作" color="#FF5500" />
         </linear>
         <text size="16" text="V1.0.0 · Power By Liang2uv" h="auto" w="max" gravity="center" />
     </linear>
