@@ -80,11 +80,11 @@ let settingData = {
 }
 
 /**
-* 获取数字
-*/
+ * 获取数字
+ */
 function getNumber(val, def) {
     const num = Number(val)
-    const deft = def ? def: 0
+    const deft = def ? def : 0
     if (isNaN(num) || num == 0) {
         return deft
     } else {
@@ -93,8 +93,8 @@ function getNumber(val, def) {
 }
 
 /**
-* 初始化数据
-*/
+ * 初始化数据
+ */
 function initData() {
     let settingStr = storage.getString(storageSettingKey)
     if (settingStr) {
@@ -145,8 +145,8 @@ function initData() {
 }
 
 /**
-* 查找元素线程
-*/
+ * 查找元素线程
+ */
 function waitFirst(sel, dur, time, callback) {
     let num = 1
     let exists = $thread.hasLoop(t1Name)
@@ -172,8 +172,8 @@ function waitFirst(sel, dur, time, callback) {
 }
 
 /**
-* 抢红包
-*/
+ * 抢红包
+ */
 function onLucky(options) {
     waitFirst(selectorLucky,
         settingData.luckyDur,
@@ -197,8 +197,8 @@ function onLucky(options) {
 }
 
 /**
-* 点開
-*/
+ * 点開
+ */
 function onKai(options) {
     waitFirst(selectorKai,
         settingData.kaiDur,
@@ -223,8 +223,8 @@ function onKai(options) {
 }
 
 /**
-* 開后返回
-*/
+ * 開后返回
+ */
 function onKaiBack(options) {
     waitFirst(selectorKaiBack,
         settingData.kaiBackDur,
@@ -251,8 +251,8 @@ function onKaiBack(options) {
 }
 
 /**
-* 找不到開，找关闭
-*/
+ * 找不到開，找关闭
+ */
 function onClose(options) {
     waitFirst(selectorClose,
         settingData.closeDur,
@@ -276,8 +276,8 @@ function onClose(options) {
 }
 
 /**
-* 长按删除
-*/
+ * 长按删除
+ */
 function onDelPress(options) {
     waitFirst(selectorLucky,
         settingData.delPressDur,
@@ -300,8 +300,8 @@ function onDelPress(options) {
 }
 
 /**
-* 删除
-*/
+ * 删除
+ */
 function onDel(options) {
     waitFirst(selectorDel,
         settingData.delDur,
@@ -328,8 +328,8 @@ function onDel(options) {
 }
 
 /**
-* 确定删除
-*/
+ * 确定删除
+ */
 function onDelSure(options) {
     waitFirst(selectorDelSure,
         settingData.delSureDur,
@@ -355,8 +355,8 @@ function onDelSure(options) {
 }
 
 /**
-* 返回
-*/
+ * 返回
+ */
 function onBack(options) {
 
     waitFirst(selectorBack,
@@ -384,8 +384,8 @@ function onBack(options) {
 }
 
 /**
-* 重新进去
-*/
+ * 重新进去
+ */
 function onTop(options) {
     waitFirst(selectorTop,
         settingData.topDur,
@@ -411,19 +411,19 @@ function onTop(options) {
 }
 
 /**
-* 从删除到重新进去
-*/
+ * 从删除到重新进去
+ */
 function onDelPress2onTop(options) {
-    onDelPress( {
+    onDelPress({
         success: (delPressRet) => {
             if (delPressRet == true) {
-                onDel( {
+                onDel({
                     success: () => {
-                        onDelSure( {
+                        onDelSure({
                             success: () => {
-                                onBack( {
+                                onBack({
                                     success: () => {
-                                        onTop( {
+                                        onTop({
                                             success: () => {
                                                 options.success(true)
                                             },
@@ -457,17 +457,17 @@ function onDelPress2onTop(options) {
 }
 
 /**
-* 抢到了
-*/
+ * 抢到了
+ */
 function kaiSuccess(options) {
     if (running == false) {
         options.fail({
             msg: 'running is false'
         })
     } else {
-        onKaiBack( {
+        onKaiBack({
             success: () => {
-                onDelPress2onTop( {
+                onDelPress2onTop({
                     success: () => {
                         options.success(true)
                     },
@@ -484,18 +484,18 @@ function kaiSuccess(options) {
 }
 
 /**
-* 没抢到
-*/
+ * 没抢到
+ */
 function kaiFail(options) {
     if (running == false) {
         options.fail({
             msg: 'running is false'
         })
     } else {
-        onClose( {
+        onClose({
             success: (closeRet) => {
                 if (closeRet == true) {
-                    onDelPress2onTop( {
+                    onDelPress2onTop({
                         success: () => {
                             options.success(true)
                         },
@@ -504,9 +504,9 @@ function kaiFail(options) {
                         }
                     })
                 } else {
-                    onKaiBack( {
+                    onKaiBack({
                         success: () => {
-                            onDelPress2onTop( {
+                            onDelPress2onTop({
                                 success: () => {
                                     options.success(true)
                                 },
@@ -529,13 +529,13 @@ function kaiFail(options) {
 }
 
 /**
-* 开始报错
-*/
+ * 开始报错
+ */
 function startError(err) {
     if (typeof err == 'string') {
         $log.err('未知异常[1]已暂停：' + err)
         toast('未知异常[1]已暂停')
-        menuRun.icon('ic_run')
+        menuRun.icon('ic_play_arrow_outline')
         $thread.stopAll()
         $thread.stopAllLoop()
         stop()
@@ -543,14 +543,14 @@ function startError(err) {
         if (err && err.msg != 'running is false') {
             $log.err('运行出错：' + err.msg)
             toast('运行出错：' + err.msg)
-            menuRun.icon('ic_run')
+            menuRun.icon('ic_play_arrow_outline')
             $thread.stopAll()
             $thread.stopAllLoop()
             stop()
         } else if (err && err.msg == 'running is false') {} else {
             $log.err('未知异常[2]已暂停')
             toast('未知异常[2]已暂停')
-            menuRun.icon('ic_run')
+            menuRun.icon('ic_play_arrow_outline')
             $thread.stopAll()
             $thread.stopAllLoop()
             stop()
@@ -559,22 +559,22 @@ function startError(err) {
 }
 
 /**
-* 开始
-*/
+ * 开始
+ */
 function start() {
     if (running == false) {
-        startError( {
+        startError({
             msg: 'running is false'
         })
     } else {
         $log.info('正在抢红包...请不要动屏幕，如果要动屏幕，请先暂停')
-        onLucky( {
+        onLucky({
             success: (luckyRet) => {
                 if (luckyRet == true) {
-                    onKai( {
+                    onKai({
                         success: (kaiRet) => {
                             if (kaiRet == true) {
-                                kaiSuccess( {
+                                kaiSuccess({
                                     success: () => {
                                         start()
                                     },
@@ -583,7 +583,7 @@ function start() {
                                     }
                                 })
                             } else {
-                                kaiFail( {
+                                kaiFail({
                                     success: () => {
                                         start()
                                     },
@@ -609,15 +609,15 @@ function start() {
 }
 
 /**
-* 结束
-*/
+ * 结束
+ */
 function stop() {
     running = false
 }
 
 /**
-* 打开参数设置
-*/
+ * 打开参数设置
+ */
 function openSetting() {
     if (running == true) {
         toast("请先暂停抢红包");
@@ -749,8 +749,8 @@ function openSetting() {
 }
 
 /**
-* 创建悬浮按钮
-*/
+ * 创建悬浮按钮
+ */
 function createFab() {
     $log.info('启动应用')
     if (!$arc.has(fabName)) {
@@ -759,11 +759,11 @@ function createFab() {
 
         //创建小按钮
         menuLogo = $arc.item('./res/icon.png') //指定按钮图标
-        menuClose = $arc.item('ic_close').iconTint('#FF0000') //可以这样指定样式[方法1]
-        menuRun = $arc.item('ic_run')
-        menuLog = $arc.item('ic_file_type_script')
-        menuHome = $arc.item('ic_home')
-        menuSetting = $arc.item('ic_baseline_settings')
+        menuClose = $arc.item('ic_clear_outline').iconTint('#FFFFFF') //可以这样指定样式[方法1]
+        menuRun = $arc.item('ic_play_arrow_outline').iconTint('#FFFFFF')
+        menuLog = $arc.item('ic_terminal_fill').iconTint('#FFFFFF')
+        menuHome = $arc.item('ic_home_fill').iconTint('#FFFFFF')
+        menuSetting = $arc.item('ic_settings_fill').iconTint('#FFFFFF')
 
         // 运行
         menuRun.click(() => {
@@ -772,13 +772,13 @@ function createFab() {
                 if (running) {
                     $log.info('已暂停抢红包')
                     toast('已暂停抢红包')
-                    menuRun.icon('ic_run')
+                    menuRun.icon('ic_play_arrow_outline')
                     $thread.stopAll()
                     $thread.stopAllLoop()
                     stop()
                 } else {
                     toast('开始抢红包')
-                    menuRun.icon('ic_stop')
+                    menuRun.icon('ic_stop_circle_outline')
                     running = true
                     start()
                 }
@@ -790,7 +790,7 @@ function createFab() {
         // 关闭
         menuClose.click(() => {
             $log.info('关闭应用')
-            menuRun.icon('ic_run')
+            menuRun.icon('ic_play_arrow_outline')
             $thread.stopAll()
             $thread.stopAllLoop()
             stop()
@@ -821,19 +821,19 @@ function createFab() {
 
         //向容器中添加小按钮
         menuBody
-        .add(menuLogo) //添加小按钮[主按钮]
-        .add(menuClose) //添加小按钮[关闭]
-        .add(menuRun) //添加小按钮[运行/停止]
-        .add(menuLog) //添加小按钮[日志]
-        .add(menuSetting) //添加小按钮[设置]
-        .add(menuHome) //添加小按钮[首页]
-        .show() //显示
+            .add(menuLogo) //添加小按钮[主按钮]
+            .add(menuHome) //添加小按钮[首页]
+            .add(menuSetting) //添加小按钮[设置]
+            .add(menuLog) //添加小按钮[日志]
+            .add(menuRun) //添加小按钮[运行/停止]
+            .add(menuClose) //添加小按钮[关闭]
+            .show() //显示
     }
 }
 
 /**
-* 权限授予
-*/
+ * 权限授予
+ */
 function checkPerm() {
     let permItCheck = ui.id('perm_it')
     let permItfloat = ui.id('perm_float')
