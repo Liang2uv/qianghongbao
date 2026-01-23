@@ -1,3 +1,5 @@
+let StepBox = require("./StepBox.js")
+
 let ui = $ui.layout('main.xml')
 ui.show()
 
@@ -411,124 +413,6 @@ function onTop(options) {
 }
 
 /**
- * 从删除到重新进去
- */
-function onDelPress2onTop(options) {
-    onDelPress({
-        success: (delPressRet) => {
-            if (delPressRet == true) {
-                onDel({
-                    success: () => {
-                        onDelSure({
-                            success: () => {
-                                onBack({
-                                    success: () => {
-                                        onTop({
-                                            success: () => {
-                                                options.success(true)
-                                            },
-                                            fail: (err) => {
-                                                options.fail(err)
-                                            }
-                                        })
-                                    },
-                                    fail: (err) => {
-                                        options.fail(err)
-                                    }
-                                })
-                            },
-                            fail: (err) => {
-                                options.fail(err)
-                            }
-                        })
-                    },
-                    fail: (err) => {
-                        options.fail(err)
-                    }
-                })
-            } else {
-                options.success(true)
-            }
-        },
-        fail: (err) => {
-            options.fail(err)
-        }
-    })
-}
-
-/**
- * 抢到了
- */
-function kaiSuccess(options) {
-    if (running == false) {
-        options.fail({
-            msg: 'running is false'
-        })
-    } else {
-        onKaiBack({
-            success: () => {
-                onDelPress2onTop({
-                    success: () => {
-                        options.success(true)
-                    },
-                    fail: (err) => {
-                        options.fail(err)
-                    }
-                })
-            },
-            fail: (err) => {
-                options.fail(err)
-            }
-        })
-    }
-}
-
-/**
- * 没抢到
- */
-function kaiFail(options) {
-    if (running == false) {
-        options.fail({
-            msg: 'running is false'
-        })
-    } else {
-        onClose({
-            success: (closeRet) => {
-                if (closeRet == true) {
-                    onDelPress2onTop({
-                        success: () => {
-                            options.success(true)
-                        },
-                        fail: (err) => {
-                            options.fail(err)
-                        }
-                    })
-                } else {
-                    onKaiBack({
-                        success: () => {
-                            onDelPress2onTop({
-                                success: () => {
-                                    options.success(true)
-                                },
-                                fail: (err) => {
-                                    options.fail(err)
-                                }
-                            })
-                        },
-                        fail: (err) => {
-                            options.fail(err)
-                        }
-                    })
-                }
-            },
-            fail: (err) => {
-                options.fail(err)
-            }
-        })
-    }
-}
-
-/**
  * 开始报错
  */
 function startError(err) {
@@ -566,46 +450,49 @@ function start() {
         startError({
             msg: 'running is false'
         })
-    } else {
-        $log.info('正在抢红包...请不要动屏幕，如果要动屏幕，请先暂停')
-        onLucky({
-            success: (luckyRet) => {
-                if (luckyRet == true) {
-                    onKai({
-                        success: (kaiRet) => {
-                            if (kaiRet == true) {
-                                kaiSuccess({
-                                    success: () => {
-                                        start()
-                                    },
-                                    fail: (err) => {
-                                        startError(err)
-                                    }
-                                })
-                            } else {
-                                kaiFail({
-                                    success: () => {
-                                        start()
-                                    },
-                                    fail: (err) => {
-                                        startError(err)
-                                    }
-                                })
-                            }
-                        },
-                        fail: (err) => {
-                            startError(err)
-                        }
-                    })
-                } else {
-                    start()
-                }
-            },
-            fail: (err) => {
-                startError(err)
-            }
-        })
+        return false;
     }
+    $log.info('正在抢红包...请不要动屏幕，如果要动屏幕，请先暂停')
+    const steps = [
+        // 等待
+        { func: onLucky, id: 'onLucky' },
+        // 打开
+        { func: onKai, id: 'onKai' },
+        // 关闭过期
+        { func: onClose, id: 'onClose', },
+        // 返回聊天页面
+        { func: onKaiBack, id: 'onKaiBack' },
+        // 长按
+        {func: onDelPress, id: 'onDelPress'},
+        // 删除
+        {func: onDel, id: 'onDel'},
+        // 确定删除
+        {func: onDelSure, id: 'onDelSure'},
+        // 返回消息列表
+        {func: onBack, id: 'onBack'},
+        // 打开置顶群
+        {func: onTop, id: 'onTop'},
+    ];
+
+    const stepBoxIns = new StepBox(steps);
+    stepBoxIns.executeStep({
+        // 新一轮
+        success: start,
+        // 错误展示
+        fail: startError,
+        // 步骤继续判断
+        isContinue: (step, result) => {
+            if (step.id === 'onLucky') {
+                return result ? 1 : 0;
+            } else if (step.id === 'onKai') {
+                return result ? 2 : 1;
+            } else if (step.id === 'onClose') {
+                return result ? 2 : 1;
+            } else {
+                return 1;
+            }
+        }
+    })
 }
 
 /**
